@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Page</title>
+</head>
+<body ng-app="demo">
+	<hr />
+	<div class="container" ng-controller="StuffLightningTalksController">
+		<div class="row">
+			<label>Topic</label> <input type="text" ng-model="topic"
+				class="input-sm spacing" /> <label>Topic Description</label> <input
+				type="text" ng-model="topicDescription" ng-list
+				class="input-sm custom-width spacing"
+				placeholder="use comma to separate skills" />
+			<button ng-click="saveTopic()" class="btn btn-sm btn-info">Save
+			</button>
+		</div>
+	</div>
+</body>
+</html>

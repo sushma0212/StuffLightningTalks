@@ -1,11 +1,13 @@
 package com.stuff.lightning.talks.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,24 +20,25 @@ import com.stuff.lightning.talks.repo.StuffLightningTalksRepository;
 public class StuffLightningTalksController {
 	private final Logger LOG = LoggerFactory.getLogger(StuffLightningTalksController.class);
 	private final StuffLightningTalksRepository stuffLightningTalksRepository;
-	
-	public StuffLightningTalksController(StuffLightningTalksRepository stuffLightningTalksRepository){
+
+	public StuffLightningTalksController(StuffLightningTalksRepository stuffLightningTalksRepository) {
 		this.stuffLightningTalksRepository = stuffLightningTalksRepository;
 	}
 
-	// inject via application.properties
-		@Value("${welcome.message:test}")
-		private String message = "Hello World";
-
-		@RequestMapping("/")
-		public String welcome(Map<String, Object> model) {
-			model.put("message", this.message);
-			return "welcome";
-		}
-		
-		@RequestMapping(value = "/create", method = RequestMethod.POST)
-		public StuffLightningTalks addNewTalks(@RequestBody StuffLightningTalks talks) {
-			LOG.info("Saving StuffLightningTalks.");
-			return stuffLightningTalksRepository.save(talks);
-		}
+	@GetMapping(value = "/")
+	public String welcome() {
+		return "index";
+	}
+	
+	@RequestMapping(value = "/createTopic", method = RequestMethod.POST)
+	public ResponseEntity<StuffLightningTalks> saveTopics(@RequestBody StuffLightningTalks talks) {
+		StuffLightningTalks talk = stuffLightningTalksRepository.save(talks);
+	    return new ResponseEntity<>(talk, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getAllTopis", method = RequestMethod.GET)
+	public ResponseEntity<List<StuffLightningTalks>> getTopics() {
+		List<StuffLightningTalks> topics = stuffLightningTalksRepository.findAll();
+	    return new ResponseEntity<>(topics, HttpStatus.OK);
+	}
 }
