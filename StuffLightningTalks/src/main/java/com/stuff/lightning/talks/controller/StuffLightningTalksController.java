@@ -27,12 +27,12 @@ public class StuffLightningTalksController {
 
 	@GetMapping(value = "/")
 	public String welcome() {
-		return "index";
+		return "main";
 	}
 	
 	@RequestMapping(value = "/createTopic", method = RequestMethod.POST)
-	public ResponseEntity<StuffLightningTalks> saveTopics(@RequestBody StuffLightningTalks talks) {
-		StuffLightningTalks talk = stuffLightningTalksRepository.save(talks);
+	public ResponseEntity<StuffLightningTalks> saveTopics(@RequestBody StuffLightningTalks data) {
+		StuffLightningTalks talk = stuffLightningTalksRepository.save(data);
 	    return new ResponseEntity<>(talk, HttpStatus.OK);
 	}
 	

@@ -8,14 +8,17 @@
 	<hr />
 	<div class="container" ng-controller="StuffLightningTalksController">
 		<div class="row">
-			<label>Topic</label> <input type="text" ng-model="topic"
-				class="input-sm spacing" /> <label>Topic Description</label> <input
-				type="text" ng-model="topicDescription" ng-list
-				class="input-sm custom-width spacing"
-				placeholder="use comma to separate skills" />
+			<label>Topic</label> <input type="text" ng-model="topic"/> <label>Topic Description</label> <input
+				type="text" ng-model="topicDescription"/>
 			<button ng-click="saveTopic()" class="btn btn-sm btn-info">Save
 			</button>
 		</div>
 	</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+<script src="js/app/app.js"></script>
+<script src="js/app/StuffLightningTalksController.js"></script>
+<link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="css/app/app.css" />
 </html>
