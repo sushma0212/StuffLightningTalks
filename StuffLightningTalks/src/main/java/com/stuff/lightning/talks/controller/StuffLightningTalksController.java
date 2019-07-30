@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stuff.lightning.talks.model.StuffLightningTalks;
 import com.stuff.lightning.talks.repo.StuffLightningTalksRepository;
+import com.stuff.lightning.talks.utils.UtilitiesHelper;
 
 @Controller
 public class StuffLightningTalksController {
@@ -27,11 +28,13 @@ public class StuffLightningTalksController {
 
 	@GetMapping(value = "/")
 	public String welcome() {
-		return "main";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/createTopic", method = RequestMethod.POST)
 	public ResponseEntity<StuffLightningTalks> saveTopics(@RequestBody StuffLightningTalks data) {
+		data.setLightningTalkDate(UtilitiesHelper.getLocalDateTime());
+		data.setSubmissionDate(UtilitiesHelper.getLocalDateTime());
 		StuffLightningTalks talk = stuffLightningTalksRepository.save(data);
 	    return new ResponseEntity<>(talk, HttpStatus.OK);
 	}

@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.stuff.lightning.talks.utils.UtilitiesHelper;
+
 @Document
 public class StuffLightningTalks {
 	
@@ -13,9 +15,9 @@ public class StuffLightningTalks {
 	
 	private String emailAddress;
 	
-	private Date submissionDate = new Date();
+	private String submissionDate = UtilitiesHelper.getLocalDateTime();
 	
-	private Date lightningTalkDate = new Date();
+	private String lightningTalkDate = UtilitiesHelper.getLocalDateTime();
 
 	public String getTopic() {
 		return topic;
@@ -41,19 +43,19 @@ public class StuffLightningTalks {
 		this.emailAddress = emailAddress;
 	}
 
-	public Date getSubmissionDate() {
+	public String getSubmissionDate() {
 		return submissionDate;
 	}
 
-	public void setSubmissionDate(Date submissionDate) {
+	public void setSubmissionDate(String submissionDate) {
 		this.submissionDate = submissionDate;
 	}
 
-	public Date getLightningTalkDate() {
+	public String getLightningTalkDate() {
 		return lightningTalkDate;
 	}
 
-	public void setLightningTalkDate(Date lightningTalkDate) {
+	public void setLightningTalkDate(String lightningTalkDate) {
 		this.lightningTalkDate = lightningTalkDate;
 	}
 
