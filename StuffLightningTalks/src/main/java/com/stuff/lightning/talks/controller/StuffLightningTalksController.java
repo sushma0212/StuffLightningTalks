@@ -1,5 +1,6 @@
 package com.stuff.lightning.talks.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.stuff.lightning.talks.model.StuffLightningTalks;
 import com.stuff.lightning.talks.repo.StuffLightningTalksRepository;
 import com.stuff.lightning.talks.utils.UtilitiesHelper;
+
+
 
 @Controller
 public class StuffLightningTalksController {
@@ -33,8 +35,8 @@ public class StuffLightningTalksController {
 	
 	@RequestMapping(value = "/createTopic", method = RequestMethod.POST)
 	public ResponseEntity<StuffLightningTalks> saveTopics(@RequestBody StuffLightningTalks data) {
-		data.setLightningTalkDate(UtilitiesHelper.getLocalDateTime());
 		data.setSubmissionDate(UtilitiesHelper.getLocalDateTime());
+		data.setLightningTalkDate(UtilitiesHelper.upcomingLightingDate(new Date()).toString());
 		StuffLightningTalks talk = stuffLightningTalksRepository.save(data);
 	    return new ResponseEntity<>(talk, HttpStatus.OK);
 	}
