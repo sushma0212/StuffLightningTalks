@@ -8,8 +8,10 @@
 	<hr />
 	<div class="container" ng-controller="StuffLightningTalksController">
 		<div class="row">
-			<label>Topic</label> <input type="text" ng-model="topic"  maxlength=80 required/> </br>
+		    <label>Email</label> <input type="text" ng-model="email"  maxlength=80 required/> </br>
+			<label>Topic</label> <input type="text" ng-model="topic"  maxlength=255 required/> </br>
 			<label>Topic Description</label> <textarea  rows="2" cols="30" ng-model="topicDescription" required></textarea>
+			Total word Count : <span ng-bind="countOf(topicDescription)"></span> words.
 			<button ng-click="saveTopic()" class="btn btn-sm btn-info">Save
 			</button>
 		</div>
